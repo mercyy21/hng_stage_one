@@ -33,6 +33,6 @@ public class DataPopulation {
 
     @PostConstruct
     public void populateData(){
-        personDataAccessService.addPerson(new Person("Mercy A.",dayOfWeekString,getCurrentUtcTime(),));
+        personDataAccessService.addPerson(new Person("Mercy A.",dayOfWeekString,getCurrentUtcTime(),"Backend","", "https://github.com/mercyy21/hng_stage_one"));
     }
 }
