@@ -30,7 +30,6 @@ public class PersonController {
     @GetMapping
     public Optional<Person> getSlackNameAndTrack(@RequestParam(name = "slack_name") String slackName, @RequestParam(name = "track") String track){
         database.add(new Person("Mercy A.",dayOfWeekString,getCurrentUtcTime(),"backend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
-        database.add(new Person("Akin",dayOfWeekString,getCurrentUtcTime(),"frontend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
         return database.stream()
                 .filter(person -> person.getSlackName().equals(slackName)&&person.getTrack().equals(track))
                 .findFirst();
