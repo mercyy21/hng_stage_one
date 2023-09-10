@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,14 @@ public class PersonController {
     public static String getCurrentUtcTime(){
         String utcTime;
         Instant instant = Instant.now();
-        utcTime=instant.toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        utcTime=instant.atZone(java.time.ZoneOffset.UTC).format(formatter);
         return utcTime;
     }
     @GetMapping
     public Optional<Person> getSlackNameAndTrack(@RequestParam(name = "slack_name") String slackName, @RequestParam(name = "track") String track){
-        database.add(new Person("Mercy A.",dayOfWeekString,getCurrentUtcTime(),"Backend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
-        database.add(new Person("Akin",dayOfWeekString,getCurrentUtcTime(),"Frontend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
+        database.add(new Person("Mercy A.",dayOfWeekString,getCurrentUtcTime(),"backend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
+        database.add(new Person("Akin",dayOfWeekString,getCurrentUtcTime(),"frontend","https://github.com/mercyy21/hng_stage_one/tree/master/demo/src/main/java/com/example/demo/controller","https://github.com/mercyy21/hng_stage_one",200));
         return database.stream()
                 .filter(person -> person.getSlackName().equals(slackName)&&person.getTrack().equals(track))
                 .findFirst();
