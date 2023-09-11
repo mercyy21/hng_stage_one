@@ -29,6 +29,11 @@ public class Person {
         this.statusCode = statusCode;
     }
 
+    public void setUtcTime(String utcTime) {
+        this.utcTime = utcTime;
+    }
+
+
     public String getSlackName() {
         return slackName;
     }
